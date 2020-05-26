@@ -7,7 +7,7 @@
         </div>
         <div class="col text-center mr-0 pr-0">
           <div id="environment">
-            <p id="environmentText"> Environment</p>
+            <p id="environmentText"> {{environment}}</p>
           </div>
         </div>
         <div class="col text-right mr-0 pr-0">
@@ -28,6 +28,10 @@
             <span>
               <nuxt-link id="newrecord" to="/newrecord">New</nuxt-link>
             </span>
+            |
+            <span>
+              <nuxt-link id="todos" to="/todos">Todos</nuxt-link>
+            </span>
           </p>
         </div>
       </div>
@@ -37,9 +41,30 @@
 
 
 
-  </template>
+</template>
 <script>
-
+  export default {
+    name: "nav-bar",
+    components: {
+    },
+    
+    data() {
+      return {
+        environment: "dev",
+        providers: [
+          //remains the same
+        ]
+      };
+    },
+    methods: {
+      storeProviderInfo(provider) {
+      this.$store.commit("saveInfo", {
+        providers: provider
+      });
+    }
+    }
+  };
+  
 </script>
 <style>
 html {
